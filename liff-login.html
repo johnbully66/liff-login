@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>LINE Login</title>
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+</head>
+<body>
+
+<script>
+const LIFF_ID = "2009511283-3mmPpiqW";
+
+async function start() {
+    try {
+        await liff.init({ liffId: LIFF_ID });
+
+        if (!liff.isLoggedIn()) {
+            liff.login();
+            return;
+        }
+
+        const profile = await liff.getProfile();
+
+        const lineId = encodeURIComponent(profile.userId);
+        const name = encodeURIComponent(profile.displayName);
+
+        // Redirect back to your Wix site
+        window.location.href =
+          `https://www.natchacafe.com/line-login?lineId=${lineId}&name=${name}`;
+
+    } catch (err) {
+        document.body.innerHTML = "Error: " + err;
+    }
+}
+
+start();
+</script>
+
+</body>
+</html>
