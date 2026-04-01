@@ -27,8 +27,8 @@ async function start() {
 
 
         // Redirect back to your Wix site
-        window.location.href =
-          `https://www.natchacafe.com/line-login?lineId=${lineId}&name=${name}`;
+      window.location.href =
+  `https://www.natchacafe.com/line-login?lineId=${lineId}&name=${name}&pic=${encodeURIComponent(pictureUrl)}`;
 
     } catch (err) {
         document.body.innerHTML = "Error: " + err;
